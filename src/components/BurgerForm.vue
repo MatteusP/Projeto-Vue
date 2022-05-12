@@ -17,49 +17,37 @@
         <label for="pao">Escolha o Pão</label>
         <select name="pao" id="pao" v-model="pao">
           <option value="" disabled selected>Selecione o Seu Pão</option>
-          <option value="integral">Integral</option>
+          <option v-for="pao in paes" :key="pao.id" value="pao.tipo">
+            {{pao.tipo}}
+          </option>
         </select>
       </div>
 
       <div class="input-container">
-        <label for="pao">Escolha a Carne do Seu Burger</label>
+        <label for="carne">Escolha a Carne do Seu Burger</label>
         <select name="carne" id="carne" v-model="carne">
           <option value="" disabled selected>Selecione o Tipo de Carne</option>
-          <option value="Maminha">Maminha</option>
+            <option v-for="carne in carnes" :key="carne.id" value="carne.tipo">
+            {{carne.tipo}}
+          </option>
         </select>
       </div>
 
       <div class="input-container" id="opcionais-container">
-        <label id="opcionais-title" for="opicionais"
+        <label id="opcionais-title" for="opcionais"
           >Selecione os Opcionais</label
         >
-        <div class="checkbox-container">
+        <div class="checkbox-container" v-for="opcional in opcionaisdata" :key="opcional.id">
           <input
             type="checkbox"
-            name="opconais"
+            name="opcionais"
             v-model="opcionais"
-            value="Salame"
+            value="opcional.tipo"
           />
-          <span>Salame</span>
+            <span>{{opcional.tipo}}</span>
         </div>
-        <div class="checkbox-container">
-          <input
-            type="checkbox"
-            name="opconais"
-            v-model="opcionais"
-            value="Salame"
-          />
-          <span>Salame</span>
-        </div>
-        <div class="checkbox-container">
-          <input
-            type="checkbox"
-            name="opconais"
-            v-model="opcionais"
-            value="Salame"
-          />
-          <span>Salame</span>
-        </div>
+        
+    
       </div>
 
       <div class="input-container">
@@ -72,7 +60,36 @@
 <script>
 export default {
   name: "BurgerForm",
-};
+  data(){
+      return{
+          paes: null,
+          carnes: null,
+          opcionaisdata: null,
+          nome: null,
+          pao: null,
+          carne: null,
+          opcionais: [],
+          status: "solicitado",
+          msg: null
+      }
+  },
+  methods:{
+      async getIngredientes(){
+          const req = await fetch("http://localhost:3000/ingredientes")
+          const data = await req.json()
+
+          this.paes = data.paes
+          this.carnes = data.carnes
+          this.opicionaisdata = data.opcionais
+
+          console.log(data)
+
+      }
+    }, 
+    mounted(){
+        this.getIngredientes()
+    }
+}
 </script>
 
 <style scoped>
@@ -111,26 +128,26 @@ select {
   margin-bottom: 20px;
 }
 .checkbox-container span,
-.checkbox-container input{
-    width: auto;
+.checkbox-container input {
+  width: auto;
 }
-.checkbox-container span{
-    margin-left: 6px;
-    font-weight: bold;
+.checkbox-container span {
+  margin-left: 6px;
+  font-weight: bold;
 }
-.submit-btn{
-    background-color: #222;
-    color: #fcba03;
-    font-weight: bold;
-    border: 2px solid #222;
-    padding: 10px;
-    font-size: 16px;
-    margin: 0 auto;
-    cursor: pointer;
-    transition: .5s;
+.submit-btn {
+  background-color: #222;
+  color: #fcba03;
+  font-weight: bold;
+  border: 2px solid #222;
+  padding: 10px;
+  font-size: 16px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 0.5s;
 }
-.submit-btn:hover{
-    background-color:transparent;
-    color: #222;
+.submit-btn:hover {
+  background-color: transparent;
+  color: #222;
 }
 </style>
