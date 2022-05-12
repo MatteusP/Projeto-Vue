@@ -24,6 +24,7 @@ export default {
         justify-content: center;
         bottom: 0;
         width: 100%;
+        position: absolute;
 
     }
 </style>
