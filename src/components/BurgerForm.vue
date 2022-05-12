@@ -80,7 +80,7 @@ export default {
 
           this.paes = data.paes
           this.carnes = data.carnes
-          this.opicionaisdata = data.opcionais
+          this.opcionaisdata = data.opcionais
 
           console.log(data)
 
