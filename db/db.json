@@ -86,7 +86,7 @@
         "Bacon",
         "Salame"
       ],
-      "status": "Solicitado",
+      "status": "Finalizado",
       "id": 1
     },
     {
@@ -98,7 +98,7 @@
         "Bacon",
         "Cheddar"
       ],
-      "status": "Solicitado",
+      "status": "Em produção",
       "id": 2
     },
     {
@@ -110,7 +110,7 @@
         "Cebola roxa",
         "Cheddar"
       ],
-      "status": "Solicitado",
+      "status": "Em produção",
       "id": 3
     },
     {
@@ -122,8 +122,19 @@
         "Cheddar",
         "Pepino"
       ],
-      "status": "Solicitado",
+      "status": "Em produção",
       "id": 4
+    },
+    {
+      "nome": "Vandecleison",
+      "carne": "Veggie burger",
+      "pao": "Integral",
+      "opcionais": [
+        "Tomate",
+        "Pepino"
+      ],
+      "status": "Solicitado",
+      "id": 5
     }
   ]
 }
