@@ -1,5 +1,6 @@
 <template>
   <div id="burger-table">
+      <Message :msg="msg" v-show="msg" />
     <div>
       <div id="burger-table-heading">
         <div class="order-id">#:</div>
@@ -35,6 +36,7 @@
 </template>
 
 <script>
+import Message from './Message'
 export default {
   name: "Dashboard",
   data() {
@@ -42,7 +44,11 @@ export default {
       burgers: null,
       burger_id: null,
       status: [],
+      msg: null
     }
+  },
+  components:{
+      Message
   },
   methods: {
     async getPedidos() {
@@ -66,6 +72,11 @@ export default {
           method: "DELETE"
         });
         const res = await req.json()
+
+        //colocar uma mensagem do sistema
+        this.msg = `O pedido Nº ${res.id} removido com sucesso!`
+        // limpar mensagem
+        setTimeout(() => this.msg = "", 3000)
         this.getPedidos()
       },
       async updateBurger(event, id) {
@@ -77,6 +88,11 @@ export default {
           body: dataJson
         });
         const res = await req.json()
+
+        //colocar uma mensagem do sistema
+        this.msg = `O pedido Nº ${res.id} foi atualizado para${res.status}!`
+        // limpar mensagem
+        setTimeout(() => this.msg = "", 3000)
         console.log(res)
       }
       
