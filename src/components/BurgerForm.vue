@@ -1,5 +1,5 @@
 <template>
-  <!-- <Message :msg="msg" v-show="msg" /> -->
+  <Message :msg="msg" v-show="msg" />
   <div>
     <form id="burger-form" method="POST" @submit="createBurger">
       <div class="input-container">
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-//import Message from './Message'
+import Message from './Message'
 export default {
   name: "BurgerForm",
   data() {
@@ -76,7 +76,9 @@ export default {
       });
       const res = await req.json()
       console.log(res)
-      this.msg = "Pedido realizado com sucesso!"
+
+      //colocar uma mensagem do sistema
+      this.msg = `Pedido Nº ${res.id} realizado com sucesso!`
       // limpar mensagem
       setTimeout(() => this.msg = "", 3000)
       // limpar campos
@@ -91,7 +93,7 @@ export default {
     this.getIngredientes()
   },
   components: {
-    //Message
+    Message
   }
 }
 </script>
