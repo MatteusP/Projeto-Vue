@@ -102,16 +102,28 @@
       "id": 2
     },
     {
-      "nome": "Maria",
-      "carne": "Veggie burger",
-      "pao": "Italiano Branco",
+      "nome": "Regina",
+      "carne": "Alcatra",
+      "pao": "3 Queijos",
       "opcionais": [
+        "Bacon",
         "Cebola roxa",
-        "Tomate",
-        "Pepino"
+        "Cheddar"
       ],
       "status": "Solicitado",
       "id": 3
+    },
+    {
+      "nome": "Antônio",
+      "carne": "Picanha",
+      "pao": "Parmesão e Orégano",
+      "opcionais": [
+        "Cebola roxa",
+        "Cheddar",
+        "Pepino"
+      ],
+      "status": "Solicitado",
+      "id": 4
     }
   ]
 }
