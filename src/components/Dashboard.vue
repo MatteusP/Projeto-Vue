@@ -10,7 +10,7 @@
         <div>Ações:</div>
       </div>
     </div>
-    <div id="burger-table-rows">
+<div id="burger-table-rows">
       <div class="burger-table-row" v-for="burger in burgers" :key="burger.id">
         <div class="order-number">{{ burger.id }}</div>
         <div>{{ burger.nome }}</div>
@@ -22,9 +22,11 @@
           </ul>
         </div>
         <div>
-          <Select name="" id="">
-            <option value="">Selecione</option>
-          </Select>
+          <select name="status" class="status" @change="updateBurger($event, burger.id)">
+            <option :value="s.tipo" v-for="s in status" :key="s.id" :selected="burger.status == s.tipo">
+              {{ s.tipo }}
+            </option>
+          </select>
           <button class="delete-btn">Cancelar</button>
         </div>
       </div>
@@ -40,20 +42,30 @@ export default {
       burgers: null,
       burger_id: null,
       status: [],
-    };
+    }
   },
   methods: {
     async getPedidos() {
       const req = await fetch("http://localhost:3000/burgers");
-      const data = await req.json();
-      this.burgers = data;
-      console.log(this.burgers);
+      const data = await req.json()
+      this.burgers = data
+      console.log(this.burgers)
+
+      //resgatar os status
+      this.getStatus(0)
     },
+    async getStatus() {
+      const req = await fetch("http://localhost:3000/status");
+      const data = await req.json()
+      this.status = data
+      console.log(this.status)
+    }
   },
-  mounted() {
-    this.getPedidos();
-  },
-};
+    mounted() {
+      this.getPedidos()
+    },
+}
+
 </script>
 
 <style scoped>
